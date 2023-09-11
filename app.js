@@ -1,28 +1,43 @@
+const boardDiv = document.querySelector('#gameboard');
 
 // Game Board
 const Gameboard = (() => {
     const gameBoard = [];
 
-    const printBoard = (itm) => {
-        gameBoard.push(itm)
+    const pushSqaureToArray = (passedIndex) => {
+        squareObject = {
+            sqaureIndex: passedIndex,
+            selected: false
+        }
+        gameBoard.push(squareObject);
     }
-    
-    console.log(gameBoard)
+
+    const printBoard = () => {
+        gameBoard.forEach((element) => {
+            console.log(element)
+            const square = document.createElement('div');
+            square.className = 'board-square';
+            boardDiv.appendChild(square);
+        })
 
 
-    return {printBoard, gameBoard}
+    }
+
+    return {printBoard, pushSqaureToArray}
 
 })();
 
 const createGameboard = (() => {
-
     for (let index = 1; index < 10; index++) {
-   
-        const square = document.createElement('p');
-        square.textContent = 'square ' + index;
-        document.body.appendChild(square); // Append the <p> element to the body
-        Gameboard.printBoard(square);
-
+        Gameboard.pushSqaureToArray(index);
     }
 })();
+
+Gameboard.printBoard();
+
+
+// Players
+
+
+// Game Logic
 
