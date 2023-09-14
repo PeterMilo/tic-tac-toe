@@ -11,15 +11,7 @@ const Gameboard = (() => {
         }
         gameBoard.push(squareObject);
     }
-    
-    
-        const createGameboard = () => {
-            for (let index = 1; index < 10; index++) {
-                Gameboard.pushSqaureToArray(index);
-            }
-        };
 
-    
     const printBoard = () => {
         gameBoard.forEach((element) => {
             console.log(element)
@@ -27,14 +19,19 @@ const Gameboard = (() => {
             square.className = 'board-square';
             boardDiv.appendChild(square);
         })
+
+
     }
 
-
-
-    return {printBoard, pushSqaureToArray, createGameboard}
+    return {printBoard, pushSqaureToArray}
 
 })();
 
+const createGameboard = (() => {
+    for (let index = 1; index < 10; index++) {
+        Gameboard.pushSqaureToArray(index);
+    }
+})();
 
 
 
@@ -48,5 +45,5 @@ const gameController = (() => {
     
 })
 
-Gameboard.createGameboard();
+
 Gameboard.printBoard();
