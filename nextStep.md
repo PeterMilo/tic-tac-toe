@@ -1,1 +1,1 @@
-Step 4 in the assignment
+Squares are indexed. Not I need to make them clickable and change color for tets
