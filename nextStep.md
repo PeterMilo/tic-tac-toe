@@ -1,1 +1,0 @@
-Squares are indexed. Not I need to make them clickable and change color for tets
