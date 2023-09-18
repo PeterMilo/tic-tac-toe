@@ -17,7 +17,7 @@ const Gameboard = (() => {
 
     const createGameboard = () => {
             for (let index = 1; index < 10; index++) {
-                Gameboard.pushSqaureToArray(index);
+                pushSqaureToArray(index);
             }
         };
     
@@ -49,11 +49,9 @@ const Gameboard = (() => {
   
     const printBoard = () => {
         gameBoard.forEach((element) => {
-            console.log(element)
             xPosition = xPositionCalculation(element.sqaureIndex);
             yPosition = yPositionCalculation(element.sqaureIndex);
-            console.log(`x = ${xPosition}`);
-            console.log(`y = ${yPosition}`);
+            console.log(element)
             const square = document.createElement('button');
             square.setAttribute('x-position', `${xPosition}`);
             square.setAttribute('y-position', `${yPosition}`);
@@ -65,7 +63,7 @@ const Gameboard = (() => {
 
 
 
-    return {printBoard, pushSqaureToArray, createGameboard, gameBoard}
+    return {printBoard, createGameboard, gameBoard}
 
 })();
 
@@ -109,6 +107,8 @@ const gameController = (() => {
             const winner = checkForWinner(Gameboard.gameBoard);
             if (winner) {
             console.log(`${winner} wins!`);
+            alert(`${winner} wins!`);
+
             }
         
             switchActivePlayer();
