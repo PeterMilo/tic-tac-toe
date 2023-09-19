@@ -20,3 +20,14 @@ button[picked-by="PlayerOne"] {
 button[picked-by="PlayerTwo"] {
     background-color: rgb(116, 9, 9);
 }
+
+#buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 2rem 1rem 1rem 1rem;
+}
+#button-new-game {
+    display: flex;
+    align-items: center;
+}

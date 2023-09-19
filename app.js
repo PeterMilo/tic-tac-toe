@@ -91,33 +91,36 @@ const gameController = (() => {
         const buttons = document.querySelectorAll('.board-square');
 
 
-    const handleButtonClick = (event) => {
-        const button = event.target;
-        if (!button.getAttribute('clicked')) {
-            // Setting the attributes of the clicked button
-            button.setAttribute('clicked', 'active');
-            button.setAttribute('picked-by', `${activePlayer.name}`)
-            console.log(`Button at X=${button.getAttribute('x-position')}, Y=${button.getAttribute('y-position')} clicked.`);
+        const handleButtonClick = (event) => {
+            const button = event.target;
+            if (!button.getAttribute('clicked')) {
+                // Setting the attributes of the clicked button
+                button.setAttribute('clicked', 'active');
+                button.setAttribute('picked-by', `${activePlayer.name}`)
+                console.log(`Button at X=${button.getAttribute('x-position')}, Y=${button.getAttribute('y-position')} clicked.`);
 
-            // Changing the value of selected to true
-            const squareIndex = parseInt(button.getAttribute('index'));
-            Gameboard.gameBoard[squareIndex - 1].selected = `${activePlayer.name}`;
+                // Changing the value of selected to true
+                const squareIndex = parseInt(button.getAttribute('index'));
+                Gameboard.gameBoard[squareIndex - 1].selected = `${activePlayer.name}`;
 
-            // Check for winner
-            const winner = checkForWinner(Gameboard.gameBoard);
-            if (winner) {
-            console.log(`${winner} wins!`);
-            alert(`${winner} wins!`);
+                // Check for winner
+                const winner = checkForWinner(Gameboard.gameBoard);
+                if (winner) {
+                console.log(`${winner} wins!`);
+                alert(`${winner} wins!`);
 
+                }
+            
+                switchActivePlayer();
             }
-        
-            switchActivePlayer();
         }
-    }
+    
+        buttons.forEach(button => {
+            button.addEventListener('click', handleButtonClick);
+        });
 
-    buttons.forEach(button => {
-        button.addEventListener('click', handleButtonClick);
-    });
+        newGameFunction();
+
     }
     
 
@@ -150,7 +153,34 @@ const gameController = (() => {
       
         return null; // No winner found
       }
-          
+    
+      
+    // New game functionality
+    const newGameFunction = () => {
+        const newGameButton = document.querySelector('#button-new-game');
+        const buttons = document.querySelectorAll('.board-square');
+        
+        const handleNewGameClick = () => {
+            console.log('New game time');
+            const test = buttons;
+            // console.log(test)
+
+            buttons.forEach(button => {
+                button.removeAttribute('clicked');
+                button.removeAttribute('picked-by')
+            })
+
+            Gameboard.gameBoard.forEach(tile => {
+                tile.selected = 'place'
+            })
+        }
+        
+        newGameButton.addEventListener('click', handleNewGameClick)
+
+    }
+
+
+    // Return statement 
     return {readyInput}
 
 })();
